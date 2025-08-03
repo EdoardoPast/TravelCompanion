@@ -1,0 +1,25 @@
+{
+  "name": "goworld-mvp",
+  "version": "1.0.0",
+  "description": "AI-Powered Virtual Travel Agent Platform MVP",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/",
+    "start": "live-server --port=3000",
+    "build": "echo 'No build process needed for static site'",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "travel",
+    "ai",
+    "chatbot",
+    "booking",
+    "mvp"
+  ],
+  "author": "GoWorld Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {}
+}
