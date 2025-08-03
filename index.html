@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoWorld - AI-Powered Virtual Travel Agent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-globe"></i>
+                <span>GoWorld</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#support" class="nav-link">Support</a>
+                <button class="btn-primary" onclick="openAuthModal()">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Your AI-Powered Travel Companion</h1>
+                <p>Experience premium travel planning democratized through advanced AI. No forms, no bureaucracy - just seamless, personalized journeys.</p>
+                <button class="btn-primary btn-large" onclick="openAuthModal()">
+                    <i class="fas fa-rocket"></i>
+                    Start Your Journey
+                </button>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <div class="card-header">
+                        <i class="fas fa-robot"></i>
+                        <span>AI Travel Agent</span>
+                    </div>
+                    <div class="chat-preview">
+                        <div class="message ai">
+                            <i class="fas fa-robot"></i>
+                            <span>Where would you like to explore today?</span>
+                        </div>
+                        <div class="message user">
+                            <span>I'm thinking of a beach vacation in Bali</span>
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Why Choose GoWorld?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Planning</h3>
+                    <p>Advanced algorithms understand your preferences and create perfectly tailored travel experiences.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Instant Booking</h3>
+                    <p>No forms or bureaucracy. Book your entire trip with just a conversation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Virtual concierge assistance throughout your entire journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Interface Section -->
+    <section class="chat-section">
+        <div class="container">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="ai-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chat-info">
+                        <h3>Your AI Travel Agent</h3>
+                        <span class="status">Online • Ready to help</span>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hello! I'm your AI travel agent. I'd love to help you plan your perfect trip. Let's start with a few questions:</p>
+                            <div class="quick-questions">
+                                <button class="quick-btn" onclick="askQuestion('What\'s your dream destination?')">Where do you want to go?</button>
+                                <button class="quick-btn" onclick="askQuestion('When are you planning to travel?')">When are you traveling?</button>
+                                <button class="quick-btn" onclick="askQuestion('What\'s your budget range?')">What's your budget?</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Tell me about your dream trip..." onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section class="recommendations">
+        <div class="container">
+            <h2>Your Personalized Recommendations</h2>
+            <div class="recommendations-tabs">
+                <button class="tab-btn active" onclick="showTab('flights')">Flights</button>
+                <button class="tab-btn" onclick="showTab('accommodations')">Accommodations</button>
+            </div>
+            
+            <div id="flights" class="tab-content active">
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <div class="card-header">
+                            <h4>Premium Economy</h4>
+                            <span class="price">$1,247</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="flight-info">
+                                <div class="route">
+                                    <span>JFK</span>
+                                    <i class="fas fa-plane"></i>
+                                    <span>BAL</span>
+                                </div>
+                                <div class="time">12h 45m • Non-stop</div>
+                            </div>
+                            <div class="airline">Singapore Airlines</div>
+                        </div>
+                        <button class="btn-select">Select Flight</button>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="card-header">
+                            <h4>Business Class</h4>
+                            <span class="price">$2,890</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="flight-info">
+                                <div class="route">
+                                    <span>JFK</span>
+                                    <i class="fas fa-plane"></i>
+                                    <span>BAL</span>
+                                </div>
+                                <div class="time">12h 45m • Non-stop</div>
+                            </div>
+                            <div class="airline">Emirates</div>
+                        </div>
+                        <button class="btn-select">Select Flight</button>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="card-header">
+                            <h4>Economy</h4>
+                            <span class="price">$987</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="flight-info">
+                                <div class="route">
+                                    <span>JFK</span>
+                                    <i class="fas fa-plane"></i>
+                                    <span>BAL</span>
+                                </div>
+                                <div class="time">15h 20m • 1 stop</div>
+                            </div>
+                            <div class="airline">Qatar Airways</div>
+                        </div>
+                        <button class="btn-select">Select Flight</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="accommodations" class="tab-content">
+                <div class="recommendations-grid">
+                    <div class="recommendation-card">
+                        <div class="card-header">
+                            <h4>Luxury Resort</h4>
+                            <span class="price">$450/night</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="hotel-info">
+                                <div class="hotel-name">Four Seasons Resort Bali</div>
+                                <div class="location">Ubud, Bali</div>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-select">Select Hotel</button>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="card-header">
+                            <h4>Boutique Hotel</h4>
+                            <span class="price">$280/night</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="hotel-info">
+                                <div class="hotel-name">Alila Ubud</div>
+                                <div class="location">Ubud, Bali</div>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-select">Select Hotel</button>
+                    </div>
+                    
+                    <div class="recommendation-card">
+                        <div class="card-header">
+                            <h4>Beach Villa</h4>
+                            <span class="price">$320/night</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="hotel-info">
+                                <div class="hotel-name">Bali Beach Resort</div>
+                                <div class="location">Seminyak, Bali</div>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>4.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-select">Select Hotel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Confirmation Section -->
+    <section class="booking-confirmation" id="bookingConfirmation" style="display: none;">
+        <div class="container">
+            <div class="confirmation-card">
+                <div class="confirmation-header">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Booking Confirmed!</h2>
+                    <p>Your trip has been automatically booked. No forms, no bureaucracy - just seamless travel planning.</p>
+                </div>
+                
+                <div class="booking-details">
+                    <div class="detail-item">
+                        <span class="label">Booking Reference:</span>
+                        <span class="value">GW-2024-001234</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Destination:</span>
+                        <span class="value">Bali, Indonesia</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Travel Dates:</span>
+                        <span class="value">March 15-22, 2024</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Total Cost:</span>
+                        <span class="value">$3,247</span>
+                    </div>
+                </div>
+                
+                <div class="confirmation-actions">
+                    <button class="btn-primary">View Itinerary</button>
+                    <button class="btn-secondary">Download PDF</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support">
+        <div class="container">
+            <h2>24/7 Support Throughout Your Journey</h2>
+            <div class="support-grid">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Pre-Departure Guidance</h3>
+                    <p>Get personalized travel tips, visa information, and packing recommendations tailored to your destination.</p>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Virtual Concierge</h3>
+                    <p>24/7 AI assistance during your trip for restaurant recommendations, activity bookings, and emergency support.</p>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Loyalty Program</h3>
+                    <p>Earn points on every booking and unlock exclusive benefits, upgrades, and personalized offers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome to GoWorld</h2>
+                <button class="close-btn" onclick="closeAuthModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Create Account</button>
+            </div>
+            
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Sign In</button>
+            </form>
+            
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="passportNumber">Passport Number (Optional)</label>
+                    <input type="text" id="passportNumber" placeholder="For faster booking">
+                </div>
+                <div class="form-group">
+                    <label for="travelPreferences">Travel Preferences (Optional)</label>
+                    <textarea id="travelPreferences" placeholder="Tell us about your travel style, dietary restrictions, accessibility needs..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-full">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
